@@ -47,6 +47,7 @@ RUN apt-get install -y bbb-apps bbb-apps-deskshare bbb-apps-sip bbb-apps-video \
     bbb-record-core  bbb-swftools
 
 RUN apt-get install -y bbb-config bbb-check haveged
+RUN rm -fr /usr/sbin/policy-rc.d
 RUN apt-get install -y bbb-demo
 RUN apt-get install -y bbb-check
 
