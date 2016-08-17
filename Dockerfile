@@ -22,6 +22,8 @@ RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty multiverse" | tee -a /
 # RUN echo "deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
 RUN apt-get -y update
 RUN apt-get -y dist-upgrade
+RUN apt-key -y update
+RUN apt-get -y update
 #Install PPA for LibreOffice 4.4 and libsslAnchor link for: install ppa for libreoffice 44 and libssl
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:libreoffice/libreoffice-4-4
