@@ -20,11 +20,10 @@ RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty multiverse" | tee -a /
 # RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse" | tee -a /etc/apt/sources.list
 # RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse" | tee -a /etc/apt/sources.list
 # RUN echo "deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
-RUN apt-get -y update
-RUN apt-get -y dist-upgrade
 RUN apt-get -y install debian-keyring debian-archive-keyring
 RUN apt-key update
 RUN apt-get -y update
+RUN apt-get -y dist-upgrade
 #Install PPA for LibreOffice 4.4 and libsslAnchor link for: install ppa for libreoffice 44 and libssl
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:libreoffice/libreoffice-4-4
@@ -35,7 +34,7 @@ RUN wget http://ubuntu.bigbluebutton.org/bigbluebutton.asc -O- | apt-key add -
 RUN echo "deb http://ubuntu.bigbluebutton.org/trusty-1-0/ bigbluebutton-trusty main" | tee /etc/apt/sources.list.d/bigbluebutton.list
 RUN apt-get -y update
 RUN dpkg-reconfigure locales
-
+RUN apt-get install -y libedit-dev
 #Install ffmpegAnchor link for: install ffmpeg
 RUN apt-get install -y libvpx1 libvorbisenc2 build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
 ADD install-ffmpeg.sh .
