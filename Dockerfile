@@ -41,23 +41,23 @@ ADD install-ffmpeg.sh .
 RUN chmod +x install-ffmpeg.sh
 RUN ./install-ffmpeg.sh
 RUN ffmpeg -version
-
+RUN apt-get install -y libpam-systemd:amd64 policykit-1 colord policykit-1-gnome
 #Install BigBlueButton
-RUN apt-get install -y bigbluebutton
+# RUN apt-get install -y bigbluebutton
 
-RUN apt-get install -y bbb-apps bbb-apps-deskshare bbb-apps-sip bbb-apps-video \
-    bbb-client bbb-freeswitch bbb-red5 bbb-mkclean bbb-office bbb-playback-presentation \
-    bbb-record-core  bbb-swftools
+# RUN apt-get install -y bbb-apps bbb-apps-deskshare bbb-apps-sip bbb-apps-video \
+#     bbb-client bbb-freeswitch bbb-red5 bbb-mkclean bbb-office bbb-playback-presentation \
+#     bbb-record-core  bbb-swftools
 
-RUN apt-get install -y bbb-config bbb-check haveged
-RUN rm -fr /usr/sbin/policy-rc.d
-RUN apt-get install -y bbb-demo
-RUN apt-get install -y bbb-check
+# RUN apt-get install -y bbb-config bbb-check haveged
+# RUN rm -fr /usr/sbin/policy-rc.d
+# RUN apt-get install -y bbb-demo
+# RUN apt-get install -y bbb-check
 
-RUN bbb-conf --setip meeting.getventive.com
-RUN bbb-conf --enablewebrtc
-RUN bbb-conf --clean
-RUN bbb-conf --check
+# RUN bbb-conf --setip meeting.getventive.com
+# RUN bbb-conf --enablewebrtc
+# RUN bbb-conf --clean
+# RUN bbb-conf --check
 
 EXPOSE 80 9123 1935
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
