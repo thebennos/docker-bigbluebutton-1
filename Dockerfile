@@ -28,7 +28,8 @@ RUN apt-get -y dist-upgrade
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:libreoffice/libreoffice-4-4
 RUN add-apt-repository -y ppa:ondrej/php
-
+RUN apt-get autoremove
+RUN apt-get clean
 #Install key for BigBlueButtonAnchor link for: install key for bigbluebutton
 RUN wget http://ubuntu.bigbluebutton.org/bigbluebutton.asc -O- | apt-key add -
 RUN echo "deb http://ubuntu.bigbluebutton.org/trusty-1-0/ bigbluebutton-trusty main" | tee /etc/apt/sources.list.d/bigbluebutton.list
