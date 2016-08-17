@@ -16,9 +16,10 @@ RUN apt-get install -y language-pack-en vim wget nano
 RUN update-locale LANG=en_US.UTF-8
 
 #Add multiverse repo
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse" | tee -a /etc/apt/sources.list
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse" | tee -a /etc/apt/sources.list
-RUN echo "deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
+RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty multiverse" | tee -a /etc/apt/sources.list
+# RUN echo "deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse" | tee -a /etc/apt/sources.list
+# RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse" | tee -a /etc/apt/sources.list
+# RUN echo "deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse" | tee -a /etc/apt/sources.list
 RUN apt-get -y update
 RUN apt-get -y dist-upgrade
 #Install PPA for LibreOffice 4.4 and libsslAnchor link for: install ppa for libreoffice 44 and libssl
