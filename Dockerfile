@@ -28,6 +28,7 @@ RUN add-apt-repository -y ppa:ondrej/php
 #Install key for BigBlueButtonAnchor link for: install key for bigbluebutton
 RUN wget http://ubuntu.bigbluebutton.org/bigbluebutton.asc -O- | apt-key add -
 RUN echo "deb http://ubuntu.bigbluebutton.org/trusty-1-0/ bigbluebutton-trusty main" | tee /etc/apt/sources.list.d/bigbluebutton.list
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
 RUN apt-get -y update
 RUN dpkg-reconfigure locales
 RUN apt-get install -y libedit-dev
