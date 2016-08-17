@@ -41,7 +41,7 @@ ADD install-ffmpeg.sh .
 RUN chmod +x install-ffmpeg.sh
 RUN ./install-ffmpeg.sh
 RUN ffmpeg -version
-RUN apt-get install -y libpam-systemd:amd64 policykit-1 colord policykit-1-gnome
+RUN apt-get install -y libpam-systemd policykit-1 colord policykit-1-gnome
 #Install BigBlueButton
 # RUN apt-get install -y bigbluebutton
 
