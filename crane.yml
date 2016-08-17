@@ -1,0 +1,11 @@
+containers:
+    bbbb:
+        build:
+            context: .
+        image: ventive/bbbb
+        run:
+            publish: ["80:80","9123:9123","1935:1935"]
+            detach: true
+        exec:
+            interactive: true
+            tty: true
