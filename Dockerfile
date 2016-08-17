@@ -12,7 +12,7 @@ RUN ln -sf /bin/true /sbin/initctl
 RUN dpkg-divert --local --rename --add /usr/bin/ischroot
 RUN ln -sf /bin/true /usr/bin/ischroot
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
-RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+RUN bash -c "echo -e '#!/bin/bash\nexit 101' | install -m 755 /dev/stdin /usr/sbin/policy-rc.d"
 RUN apt-get upgrade -y
 RUN apt-get -y update
 RUN apt-get install -y language-pack-en vim wget nano ca-certificates
