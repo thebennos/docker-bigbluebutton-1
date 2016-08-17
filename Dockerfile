@@ -13,17 +13,11 @@ RUN dpkg-divert --local --rename --add /usr/bin/ischroot
 RUN ln -sf /bin/true /usr/bin/ischroot
 # Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
 RUN bash -c "echo -e '#!/bin/bash\nexit 101' | install -m 755 /dev/stdin /usr/sbin/policy-rc.d"
-RUN apt-get upgrade -y
-RUN apt-get -y update
-RUN apt-get install -y language-pack-en vim wget nano ca-certificates
+RUN apt-get -y update && apt-get -y dist-upgrade
+RUN apt-get install -y -q language-pack-en vim wget nano ca-certificates debian-keyring debian-archive-keyring
 RUN update-locale LANG=en_US.UTF-8
-
-#Add multiverse repo
-#RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ trusty multiverse" | tee -a /etc/apt/sources.list
-RUN apt-get -y install debian-keyring debian-archive-keyring
+RUN dpkg-reconfigure locales
 RUN apt-key update
-RUN apt-get -y update
-# RUN apt-get -y dist-upgrade
 #Install PPA for LibreOffice 4.4 and libsslAnchor link for: install ppa for libreoffice 44 and libssl
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:libreoffice/libreoffice-4-4
@@ -33,8 +27,6 @@ RUN wget http://ubuntu.bigbluebutton.org/bigbluebutton.asc -O- | apt-key add -
 RUN echo "deb http://ubuntu.bigbluebutton.org/trusty-1-0/ bigbluebutton-trusty main" | tee /etc/apt/sources.list.d/bigbluebutton.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
 RUN apt-get -y update
-RUN dpkg-reconfigure locales
-RUN apt-get install -y libedit-dev
 #Install ffmpegAnchor link for: install ffmpeg
 RUN apt-get install -y libvpx1 libvorbisenc2 build-essential git-core checkinstall yasm texi2html libvorbis-dev libx11-dev libvpx-dev libxfixes-dev zlib1g-dev pkg-config netcat libncurses5-dev
 ADD install-ffmpeg.sh .
