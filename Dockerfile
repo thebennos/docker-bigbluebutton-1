@@ -11,8 +11,11 @@ RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
 RUN dpkg-divert --local --rename --add /usr/bin/ischroot
 RUN ln -sf /bin/true /usr/bin/ischroot
+# Avoid ERROR: invoke-rc.d: policy-rc.d denied execution of start.
+RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+RUN apt-get upgrade -y
 RUN apt-get -y update
-RUN apt-get install -y language-pack-en vim wget nano
+RUN apt-get install -y language-pack-en vim wget nano ca-certificates
 RUN update-locale LANG=en_US.UTF-8
 
 #Add multiverse repo
